@@ -772,38 +772,56 @@
         - #CONTACT
       -->
 
-      <article class="contact" data-page="contact">
+     <article class="contact" data-page="contact">
 
-        <header>
-          <h2 class="h2 article-title">Contact</h2>
-        </header>
+  <header>
+    <h2 class="h2 article-title">Contact</h2>
+  </header>
 
-        
+  <section class="contact-form">
 
-        <section class="contact-form">
+    <h3 class="h3 form-title">Contact Form</h3>
 
-          <h3 class="h3 form-title">Contact Form</h3>
+    <form id="contactForm" class="form" onsubmit="redirectToWhatsApp(event)">
 
-          <form action="#" class="form" data-form>
+      <div class="input-wrapper">
+        <input type="text" id="fullname" name="fullname" class="form-input" placeholder="Full name" required>
+        <input type="email" id="email" name="email" class="form-input" placeholder="Email address" required>
+      </div>
 
-            <div class="input-wrapper">
-              <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
+      <textarea id="message" name="message" class="form-input" placeholder="Your Message" required></textarea>
 
-              <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
-            </div>
+      <button class="form-btn" type="submit">
+        <ion-icon name="paper-plane"></ion-icon>
+        <span>Send Message</span>
+      </button>
 
-            <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
+    </form>
 
-            <button class="form-btn" type="submit" disabled data-form-btn>
-              <ion-icon name="paper-plane"></ion-icon>
-              <span>Send Message</span>
-            </button>
+  </section>
 
-          </form>
+</article>
 
-        </section>
+<script>
+  function redirectToWhatsApp(event) {
+    event.preventDefault(); // Prevent form submission
 
-      </article>
+    // Get form values
+    const fullname = document.getElementById('fullname').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+
+    // Construct WhatsApp message
+    const phoneNumber = '6351240826'; // WhatsApp API number
+    const encodedMessage = encodeURIComponent(
+      `Hello, my name is ${fullname}.\nEmail: ${email}\nMessage: ${message}`
+    );
+
+    // Redirect to WhatsApp
+    window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+  }
+</script>
+
 
     </div>
 
