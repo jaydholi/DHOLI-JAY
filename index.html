@@ -772,7 +772,7 @@
         - #CONTACT
       -->
 
-     <article class="contact" data-page="contact">
+<article class="contact" data-page="contact">
 
   <header>
     <h2 class="h2 article-title">Contact</h2>
@@ -804,23 +804,35 @@
 
 <script>
   function redirectToWhatsApp(event) {
-    event.preventDefault(); // Prevent form submission
+    event.preventDefault(); // Prevent default form submission
 
-    // Get form values
-    const fullname = document.getElementById('fullname').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
+    // Retrieve input values
+    const fullname = document.getElementById('fullname').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
 
-    // Construct WhatsApp message
-    const phoneNumber = '6351240826'; // WhatsApp API number
+    // Ensure all fields are filled
+    if (!fullname || !email || !message) {
+      alert("Please fill out all fields before submitting.");
+      return;
+    }
+
+    // WhatsApp API phone number (receiver's number)
+    const phoneNumber = '6351240826';
+
+    // Construct the message for WhatsApp
     const encodedMessage = encodeURIComponent(
-      `Hello, my name is ${fullname}.\nEmail: ${email}\nMessage: ${message}`
+      `Hello! My name is ${fullname}.\nEmail: ${email}\nMessage: ${message}`
     );
 
     // Redirect to WhatsApp
-    window.open(`https://wa.me/${6351240826}?text=${encodedMessage}`, '_blank');
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    window.location.href = whatsappURL; // Automatically redirects
   }
 </script>
+
+
+
 
 
     </div>
